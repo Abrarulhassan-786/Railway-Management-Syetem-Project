@@ -1,0 +1,74 @@
+﻿@model DBMS_RMS_PROJECT.Models.tbl_Passenger
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>tbl_Passenger</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.p_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.p_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.p_Phone_No)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.p_Phone_No)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.P_Age)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.P_Age)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.P_Seat_number)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.P_Seat_number)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.P_Gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.P_Gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Train.T_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Train.T_Name)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.P_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

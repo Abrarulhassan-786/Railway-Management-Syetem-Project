@@ -1,0 +1,58 @@
+﻿@model DBMS_RMS_PROJECT.Models.tbl_Station
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>tbl_Station</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.S_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.S_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.S_ArrivalTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.S_ArrivalTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Train.T_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Train.T_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_User.U_Fname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_User.U_Fname)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.S_No }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

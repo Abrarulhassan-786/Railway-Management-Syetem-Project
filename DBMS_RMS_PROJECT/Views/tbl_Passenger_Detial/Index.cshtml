@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DBMS_RMS_PROJECT.Models.tbl_Passenger_Detial>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pd_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pd_Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pd_Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbl_Passenger.p_Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pd_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pd_Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pd_Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_Passenger.p_Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.pd_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.pd_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.pd_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

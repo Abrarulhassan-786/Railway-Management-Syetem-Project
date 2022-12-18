@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DBMS_RMS_PROJECT.Models.tbl_Ticket_Category>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tc_Gernal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tc_Businsman)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tc_parliment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tc_Economy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbl_Ticket.t_ID)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tc_Gernal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tc_Businsman)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tc_parliment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tc_Economy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_Ticket.t_ID)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.tc_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.tc_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.tc_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

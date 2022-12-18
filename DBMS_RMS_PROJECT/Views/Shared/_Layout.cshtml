@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/footercss/stylesheet/style.css">
+    <link rel="stylesheet" href="~/banner/stylesheet/banner.css">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("USER", "Index", "tbl_User")</li>
+                    <li>@Html.ActionLink("TRAIN", "Index", "tbl_Train")</li>
+                    <li>@Html.ActionLink("STATION", "Index", "tbl_Station")</li>
+                    <li>@Html.ActionLink("TICKET", "Index", "tbl_Ticket")</li>
+                    <li>@Html.ActionLink("TICKET CATAGORY", "Index", "tbl_Ticket_Category")</li>
+                    <li>@Html.ActionLink("PASSENGER", "Index", "tbl_Passenger")</li>
+                    <li>@Html.ActionLink("PASSENGER DETAIL", "Index", "tbl_Passenger_Detial")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <h1 id="RAILWAY"> RAILWAY MANAGEMENT SYSTEM</h1>
+    <div id="images">
+        <img src="https://www.railwayage.com/wp-content/uploads/2021/02/commuter-rail-train-banner.jpg">
+    </div>
+    <br />
+    <h2>USER REGISTRATION DATA</h2>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Total Ticket</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ali</td>
+                    <td>03024929048</td>
+                    <td>Ali87@gmail.com</td>
+                    <td>3</td>
+                    <td>Rs: 5000</td>
+                </tr>
+                <tr>
+                    <td>Zain</td>
+                    <td>0322392738</td>
+                    <td>zain785@gmail.com</td>
+                    <td>4</td>
+                    <td>Rs: 6000</td>
+                </tr>
+                <tr>
+                    <td>Abrar</td>
+                    <td>03402848293</td>
+                    <td>Abrar@gmial.com</td>
+                    <td>10</td>
+                    <td>Rs: 12000</td>
+                </tr>
+                <tr>
+                    <td>Muzammil</td>
+                    <td>0303492734</td>
+                    <td>Muzammil@gmail.com</td>
+                    <td>8</td>
+                    <td>Rs: 30000</td>
+                </tr>
+                <tr>
+                    <td>Hassan</td>
+                    <td>0327682783</td>
+                    <td>Hassan979@gmail.com</td>
+                    <td>9</td>
+                    <td>Rs: 70000</td>
+                </tr>
+                <tr>
+                    <td>Israr</td>
+                    <td>0398498232</td>
+                    <td>Israr67@gmail.com</td>
+                    <td>5</td>
+                    <td>Rs: 3000</td>
+                </tr>
+                <tr>
+                    <td>Ali</td>
+                    <td>030482904</td>
+                    <td>Ali78@gmail.com</td>
+                    <td>2</td>
+                    <td>Rs: 6000</td>
+                </tr>
+                <tr>
+                    <td>Rimsha</td>
+                    <td>0329389234</td>
+                    <td>Rimsha78@gmail.com</td>
+                    <td>3</td>
+                    <td>Rs: 7000</td>
+                </tr>
+                <tr>
+                    <td>Hassan</td>
+                    <td>0321638238</td>
+                    <td>Hassan88@gmail.com</td>
+                    <td>1</td>
+                    <td>Rs: 7000</td>
+                </tr>
+                <tr>
+                    <td>Ubedullah</td>
+                    <td>03032034848</td>
+                    <td>Ubedullah97@gmail.com</td>
+                    <td>2</td>
+                    <td>Rs: 40432</td>
+                </tr>
+            <tbody>
+        </table>
+        <br />
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+        </div>
+        <br />
+        <h2>ROUTES OF RAILWAY</h2>
+        <div id="maps">
+            <img id="route" src="http://www.dostpakistan.pk/wp-content/themes/sahifa/timthumb.php?src=/wp-content/uploads/2012/11/pak_railway_map.jpg&h=330&w=660&a=c" />
+        </div>
+        <br />
+        <h2>LOCATION </h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d115814.94953294573!2d67.0629888!3d24.890572799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1652611847984!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+
+   
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3>RAILWAY <span> MANAGEMENT </span> SYSTEM </h3>
+
+            <p class="footer-links">
+                <a href="#">ADMIN</a>
+                ·
+                <a href="#">TRAIN</a>
+                ·
+                <a href="#">PRICIING</a>
+                ·
+                <a href="#">PASSENGER</a>
+                ·
+                <a href="#">TICKET</a>
+                ·
+                <a href="#">CONTACT</a>
+            </p>
+
+            <p class="footer-company-name">ABRAR MUZAMMIL &copy; 2022</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>PAF KIET</span> Karachi, Pakistan</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>03032033694</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">AbrarMuzammil@gmail.com</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About Us</span>
+                We are Student of PAK KIET, We made Project Related to Railway Management system &amp; And other Project
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_RMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Passenger">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_Name" Type="varchar" MaxLength="50" />
+          <Property Name="p_Phone_No" Type="int" />
+          <Property Name="P_Age" Type="varchar" MaxLength="50" />
+          <Property Name="P_Seat_number" Type="int" />
+          <Property Name="P_Gender" Type="varchar" MaxLength="50" />
+          <Property Name="Train_No" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Passenger_Detial">
+          <Key>
+            <PropertyRef Name="pd_id" />
+          </Key>
+          <Property Name="pd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pd_name" Type="varchar" MaxLength="50" />
+          <Property Name="pd_Age" Type="int" />
+          <Property Name="pd_Email" Type="varchar" MaxLength="50" />
+          <Property Name="P_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Station">
+          <Key>
+            <PropertyRef Name="S_No" />
+          </Key>
+          <Property Name="S_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="S_Name" Type="varchar" MaxLength="50" />
+          <Property Name="S_ArrivalTime" Type="varchar" MaxLength="50" />
+          <Property Name="U_Id" Type="int" />
+          <Property Name="Train_No" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Ticket">
+          <Key>
+            <PropertyRef Name="t_ID" />
+          </Key>
+          <Property Name="t_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="t_BookedUser" Type="int" />
+          <Property Name="t_PassengrNo" Type="int" />
+          <Property Name="t_Payment" Type="int" />
+          <Property Name="P_ID" Type="int" />
+          <Property Name="U_Id" Type="int" />
+          <Property Name="S_No" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Ticket_Category">
+          <Key>
+            <PropertyRef Name="tc_id" />
+          </Key>
+          <Property Name="tc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tc_Gernal" Type="int" />
+          <Property Name="tc_Businsman" Type="int" />
+          <Property Name="tc_parliment" Type="int" />
+          <Property Name="tc_Economy" Type="int" />
+          <Property Name="t_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Train">
+          <Key>
+            <PropertyRef Name="Train_No" />
+          </Key>
+          <Property Name="Train_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="T_Name" Type="varchar" MaxLength="50" />
+          <Property Name="T_Desination" Type="varchar" MaxLength="50" />
+          <Property Name="T_DepartureTime" Type="varchar" MaxLength="50" />
+          <Property Name="T_ArrivalTime" Type="varchar" MaxLength="50" />
+          <Property Name="T_seats_Available" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="U_Id" />
+          </Key>
+          <Property Name="U_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="U_Fname" Type="varchar" MaxLength="50" />
+          <Property Name="U_Lname" Type="varchar" MaxLength="50" />
+          <Property Name="U_Mobile_No" Type="int" />
+          <Property Name="U_Email" Type="varchar" MaxLength="50" />
+          <Property Name="U_Age" Type="varchar" MaxLength="50" />
+          <Property Name="U_Gender" Type="varchar" MaxLength="50" />
+          <Property Name="U_Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__tbl_Passe__Train__3C69FB99">
+          <End Role="tbl_Train" Type="Self.tbl_Train" Multiplicity="0..1" />
+          <End Role="tbl_Passenger" Type="Self.tbl_Passenger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Train">
+              <PropertyRef Name="Train_No" />
+            </Principal>
+            <Dependent Role="tbl_Passenger">
+              <PropertyRef Name="Train_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Passen__P_ID__3F466844">
+          <End Role="tbl_Passenger" Type="Self.tbl_Passenger" Multiplicity="0..1" />
+          <End Role="tbl_Passenger_Detial" Type="Self.tbl_Passenger_Detial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Passenger">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="tbl_Passenger_Detial">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Stati__Train__398D8EEE">
+          <End Role="tbl_Train" Type="Self.tbl_Train" Multiplicity="0..1" />
+          <End Role="tbl_Station" Type="Self.tbl_Station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Train">
+              <PropertyRef Name="Train_No" />
+            </Principal>
+            <Dependent Role="tbl_Station">
+              <PropertyRef Name="Train_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Statio__U_Id__38996AB5">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+          <End Role="tbl_Station" Type="Self.tbl_Station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="tbl_Station">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Ticket__P_ID__4222D4EF">
+          <End Role="tbl_Passenger" Type="Self.tbl_Passenger" Multiplicity="0..1" />
+          <End Role="tbl_Ticket" Type="Self.tbl_Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Passenger">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="tbl_Ticket">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Ticket__S_No__440B1D61">
+          <End Role="tbl_Station" Type="Self.tbl_Station" Multiplicity="0..1" />
+          <End Role="tbl_Ticket" Type="Self.tbl_Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Station">
+              <PropertyRef Name="S_No" />
+            </Principal>
+            <Dependent Role="tbl_Ticket">
+              <PropertyRef Name="S_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Ticket__t_ID__46E78A0C">
+          <End Role="tbl_Ticket" Type="Self.tbl_Ticket" Multiplicity="0..1" />
+          <End Role="tbl_Ticket_Category" Type="Self.tbl_Ticket_Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Ticket">
+              <PropertyRef Name="t_ID" />
+            </Principal>
+            <Dependent Role="tbl_Ticket_Category">
+              <PropertyRef Name="t_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Ticket__U_Id__4316F928">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+          <End Role="tbl_Ticket" Type="Self.tbl_Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="tbl_Ticket">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_RMSModelStoreContainer">
+          <EntitySet Name="tbl_Passenger" EntityType="Self.tbl_Passenger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Passenger_Detial" EntityType="Self.tbl_Passenger_Detial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Station" EntityType="Self.tbl_Station" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Ticket" EntityType="Self.tbl_Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Ticket_Category" EntityType="Self.tbl_Ticket_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Train" EntityType="Self.tbl_Train" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_Passe__Train__3C69FB99" Association="Self.FK__tbl_Passe__Train__3C69FB99">
+            <End Role="tbl_Train" EntitySet="tbl_Train" />
+            <End Role="tbl_Passenger" EntitySet="tbl_Passenger" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Passen__P_ID__3F466844" Association="Self.FK__tbl_Passen__P_ID__3F466844">
+            <End Role="tbl_Passenger" EntitySet="tbl_Passenger" />
+            <End Role="tbl_Passenger_Detial" EntitySet="tbl_Passenger_Detial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Stati__Train__398D8EEE" Association="Self.FK__tbl_Stati__Train__398D8EEE">
+            <End Role="tbl_Train" EntitySet="tbl_Train" />
+            <End Role="tbl_Station" EntitySet="tbl_Station" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Statio__U_Id__38996AB5" Association="Self.FK__tbl_Statio__U_Id__38996AB5">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_Station" EntitySet="tbl_Station" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Ticket__P_ID__4222D4EF" Association="Self.FK__tbl_Ticket__P_ID__4222D4EF">
+            <End Role="tbl_Passenger" EntitySet="tbl_Passenger" />
+            <End Role="tbl_Ticket" EntitySet="tbl_Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Ticket__S_No__440B1D61" Association="Self.FK__tbl_Ticket__S_No__440B1D61">
+            <End Role="tbl_Station" EntitySet="tbl_Station" />
+            <End Role="tbl_Ticket" EntitySet="tbl_Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Ticket__t_ID__46E78A0C" Association="Self.FK__tbl_Ticket__t_ID__46E78A0C">
+            <End Role="tbl_Ticket" EntitySet="tbl_Ticket" />
+            <End Role="tbl_Ticket_Category" EntitySet="tbl_Ticket_Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Ticket__U_Id__4316F928" Association="Self.FK__tbl_Ticket__U_Id__4316F928">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_Ticket" EntitySet="tbl_Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_RMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Passenger">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="p_Phone_No" Type="Int32" />
+          <Property Name="P_Age" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="P_Seat_number" Type="Int32" />
+          <Property Name="P_Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Train_No" Type="Int32" />
+          <NavigationProperty Name="tbl_Train" Relationship="Self.FK__tbl_Passe__Train__3C69FB99" FromRole="tbl_Passenger" ToRole="tbl_Train" />
+          <NavigationProperty Name="tbl_Passenger_Detial" Relationship="Self.FK__tbl_Passen__P_ID__3F466844" FromRole="tbl_Passenger" ToRole="tbl_Passenger_Detial" />
+          <NavigationProperty Name="tbl_Ticket" Relationship="Self.FK__tbl_Ticket__P_ID__4222D4EF" FromRole="tbl_Passenger" ToRole="tbl_Ticket" />
+        </EntityType>
+        <EntityType Name="tbl_Passenger_Detial">
+          <Key>
+            <PropertyRef Name="pd_id" />
+          </Key>
+          <Property Name="pd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pd_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pd_Age" Type="Int32" />
+          <Property Name="pd_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="P_ID" Type="Int32" />
+          <NavigationProperty Name="tbl_Passenger" Relationship="Self.FK__tbl_Passen__P_ID__3F466844" FromRole="tbl_Passenger_Detial" ToRole="tbl_Passenger" />
+        </EntityType>
+        <EntityType Name="tbl_Station">
+          <Key>
+            <PropertyRef Name="S_No" />
+          </Key>
+          <Property Name="S_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="S_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="S_ArrivalTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Id" Type="Int32" />
+          <Property Name="Train_No" Type="Int32" />
+          <NavigationProperty Name="tbl_Train" Relationship="Self.FK__tbl_Stati__Train__398D8EEE" FromRole="tbl_Station" ToRole="tbl_Train" />
+          <NavigationProperty Name="tbl_User" Relationship="Self.FK__tbl_Statio__U_Id__38996AB5" FromRole="tbl_Station" ToRole="tbl_User" />
+          <NavigationProperty Name="tbl_Ticket" Relationship="Self.FK__tbl_Ticket__S_No__440B1D61" FromRole="tbl_Station" ToRole="tbl_Ticket" />
+        </EntityType>
+        <EntityType Name="tbl_Ticket">
+          <Key>
+            <PropertyRef Name="t_ID" />
+          </Key>
+          <Property Name="t_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="t_BookedUser" Type="Int32" />
+          <Property Name="t_PassengrNo" Type="Int32" />
+          <Property Name="t_Payment" Type="Int32" />
+          <Property Name="P_ID" Type="Int32" />
+          <Property Name="U_Id" Type="Int32" />
+          <Property Name="S_No" Type="Int32" />
+          <NavigationProperty Name="tbl_Passenger" Relationship="Self.FK__tbl_Ticket__P_ID__4222D4EF" FromRole="tbl_Ticket" ToRole="tbl_Passenger" />
+          <NavigationProperty Name="tbl_Station" Relationship="Self.FK__tbl_Ticket__S_No__440B1D61" FromRole="tbl_Ticket" ToRole="tbl_Station" />
+          <NavigationProperty Name="tbl_Ticket_Category" Relationship="Self.FK__tbl_Ticket__t_ID__46E78A0C" FromRole="tbl_Ticket" ToRole="tbl_Ticket_Category" />
+          <NavigationProperty Name="tbl_User" Relationship="Self.FK__tbl_Ticket__U_Id__4316F928" FromRole="tbl_Ticket" ToRole="tbl_User" />
+        </EntityType>
+        <EntityType Name="tbl_Ticket_Category">
+          <Key>
+            <PropertyRef Name="tc_id" />
+          </Key>
+          <Property Name="tc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tc_Gernal" Type="Int32" />
+          <Property Name="tc_Businsman" Type="Int32" />
+          <Property Name="tc_parliment" Type="Int32" />
+          <Property Name="tc_Economy" Type="Int32" />
+          <Property Name="t_ID" Type="Int32" />
+          <NavigationProperty Name="tbl_Ticket" Relationship="Self.FK__tbl_Ticket__t_ID__46E78A0C" FromRole="tbl_Ticket_Category" ToRole="tbl_Ticket" />
+        </EntityType>
+        <EntityType Name="tbl_Train">
+          <Key>
+            <PropertyRef Name="Train_No" />
+          </Key>
+          <Property Name="Train_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="T_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="T_Desination" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="T_DepartureTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="T_ArrivalTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="T_seats_Available" Type="Int32" />
+          <NavigationProperty Name="tbl_Passenger" Relationship="Self.FK__tbl_Passe__Train__3C69FB99" FromRole="tbl_Train" ToRole="tbl_Passenger" />
+          <NavigationProperty Name="tbl_Station" Relationship="Self.FK__tbl_Stati__Train__398D8EEE" FromRole="tbl_Train" ToRole="tbl_Station" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="U_Id" />
+          </Key>
+          <Property Name="U_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="U_Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Mobile_No" Type="Int32" />
+          <Property Name="U_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Age" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Station" Relationship="Self.FK__tbl_Statio__U_Id__38996AB5" FromRole="tbl_User" ToRole="tbl_Station" />
+          <NavigationProperty Name="tbl_Ticket" Relationship="Self.FK__tbl_Ticket__U_Id__4316F928" FromRole="tbl_User" ToRole="tbl_Ticket" />
+        </EntityType>
+        <Association Name="FK__tbl_Passe__Train__3C69FB99">
+          <End Role="tbl_Train" Type="Self.tbl_Train" Multiplicity="0..1" />
+          <End Role="tbl_Passenger" Type="Self.tbl_Passenger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Train">
+              <PropertyRef Name="Train_No" />
+            </Principal>
+            <Dependent Role="tbl_Passenger">
+              <PropertyRef Name="Train_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Passen__P_ID__3F466844">
+          <End Role="tbl_Passenger" Type="Self.tbl_Passenger" Multiplicity="0..1" />
+          <End Role="tbl_Passenger_Detial" Type="Self.tbl_Passenger_Detial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Passenger">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="tbl_Passenger_Detial">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Ticket__P_ID__4222D4EF">
+          <End Role="tbl_Passenger" Type="Self.tbl_Passenger" Multiplicity="0..1" />
+          <End Role="tbl_Ticket" Type="Self.tbl_Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Passenger">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="tbl_Ticket">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Stati__Train__398D8EEE">
+          <End Role="tbl_Train" Type="Self.tbl_Train" Multiplicity="0..1" />
+          <End Role="tbl_Station" Type="Self.tbl_Station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Train">
+              <PropertyRef Name="Train_No" />
+            </Principal>
+            <Dependent Role="tbl_Station">
+              <PropertyRef Name="Train_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Statio__U_Id__38996AB5">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+          <End Role="tbl_Station" Type="Self.tbl_Station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="tbl_Station">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Ticket__S_No__440B1D61">
+          <End Role="tbl_Station" Type="Self.tbl_Station" Multiplicity="0..1" />
+          <End Role="tbl_Ticket" Type="Self.tbl_Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Station">
+              <PropertyRef Name="S_No" />
+            </Principal>
+            <Dependent Role="tbl_Ticket">
+              <PropertyRef Name="S_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Ticket__t_ID__46E78A0C">
+          <End Role="tbl_Ticket" Type="Self.tbl_Ticket" Multiplicity="0..1" />
+          <End Role="tbl_Ticket_Category" Type="Self.tbl_Ticket_Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Ticket">
+              <PropertyRef Name="t_ID" />
+            </Principal>
+            <Dependent Role="tbl_Ticket_Category">
+              <PropertyRef Name="t_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Ticket__U_Id__4316F928">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+          <End Role="tbl_Ticket" Type="Self.tbl_Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="tbl_Ticket">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_RMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Passenger" EntityType="Self.tbl_Passenger" />
+          <EntitySet Name="tbl_Passenger_Detial" EntityType="Self.tbl_Passenger_Detial" />
+          <EntitySet Name="tbl_Station" EntityType="Self.tbl_Station" />
+          <EntitySet Name="tbl_Ticket" EntityType="Self.tbl_Ticket" />
+          <EntitySet Name="tbl_Ticket_Category" EntityType="Self.tbl_Ticket_Category" />
+          <EntitySet Name="tbl_Train" EntityType="Self.tbl_Train" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
+          <AssociationSet Name="FK__tbl_Passe__Train__3C69FB99" Association="Self.FK__tbl_Passe__Train__3C69FB99">
+            <End Role="tbl_Train" EntitySet="tbl_Train" />
+            <End Role="tbl_Passenger" EntitySet="tbl_Passenger" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Passen__P_ID__3F466844" Association="Self.FK__tbl_Passen__P_ID__3F466844">
+            <End Role="tbl_Passenger" EntitySet="tbl_Passenger" />
+            <End Role="tbl_Passenger_Detial" EntitySet="tbl_Passenger_Detial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Ticket__P_ID__4222D4EF" Association="Self.FK__tbl_Ticket__P_ID__4222D4EF">
+            <End Role="tbl_Passenger" EntitySet="tbl_Passenger" />
+            <End Role="tbl_Ticket" EntitySet="tbl_Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Stati__Train__398D8EEE" Association="Self.FK__tbl_Stati__Train__398D8EEE">
+            <End Role="tbl_Train" EntitySet="tbl_Train" />
+            <End Role="tbl_Station" EntitySet="tbl_Station" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Statio__U_Id__38996AB5" Association="Self.FK__tbl_Statio__U_Id__38996AB5">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_Station" EntitySet="tbl_Station" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Ticket__S_No__440B1D61" Association="Self.FK__tbl_Ticket__S_No__440B1D61">
+            <End Role="tbl_Station" EntitySet="tbl_Station" />
+            <End Role="tbl_Ticket" EntitySet="tbl_Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Ticket__t_ID__46E78A0C" Association="Self.FK__tbl_Ticket__t_ID__46E78A0C">
+            <End Role="tbl_Ticket" EntitySet="tbl_Ticket" />
+            <End Role="tbl_Ticket_Category" EntitySet="tbl_Ticket_Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Ticket__U_Id__4316F928" Association="Self.FK__tbl_Ticket__U_Id__4316F928">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_Ticket" EntitySet="tbl_Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_RMSModelStoreContainer" CdmEntityContainer="DB_RMSEntities">
+          <EntitySetMapping Name="tbl_Passenger">
+            <EntityTypeMapping TypeName="DB_RMSModel.tbl_Passenger">
+              <MappingFragment StoreEntitySet="tbl_Passenger">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="p_Name" ColumnName="p_Name" />
+                <ScalarProperty Name="p_Phone_No" ColumnName="p_Phone_No" />
+                <ScalarProperty Name="P_Age" ColumnName="P_Age" />
+                <ScalarProperty Name="P_Seat_number" ColumnName="P_Seat_number" />
+                <ScalarProperty Name="P_Gender" ColumnName="P_Gender" />
+                <ScalarProperty Name="Train_No" ColumnName="Train_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Passenger_Detial">
+            <EntityTypeMapping TypeName="DB_RMSModel.tbl_Passenger_Detial">
+              <MappingFragment StoreEntitySet="tbl_Passenger_Detial">
+                <ScalarProperty Name="pd_id" ColumnName="pd_id" />
+                <ScalarProperty Name="pd_name" ColumnName="pd_name" />
+                <ScalarProperty Name="pd_Age" ColumnName="pd_Age" />
+                <ScalarProperty Name="pd_Email" ColumnName="pd_Email" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Station">
+            <EntityTypeMapping TypeName="DB_RMSModel.tbl_Station">
+              <MappingFragment StoreEntitySet="tbl_Station">
+                <ScalarProperty Name="S_No" ColumnName="S_No" />
+                <ScalarProperty Name="S_Name" ColumnName="S_Name" />
+                <ScalarProperty Name="S_ArrivalTime" ColumnName="S_ArrivalTime" />
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="Train_No" ColumnName="Train_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Ticket">
+            <EntityTypeMapping TypeName="DB_RMSModel.tbl_Ticket">
+              <MappingFragment StoreEntitySet="tbl_Ticket">
+                <ScalarProperty Name="t_ID" ColumnName="t_ID" />
+                <ScalarProperty Name="t_BookedUser" ColumnName="t_BookedUser" />
+                <ScalarProperty Name="t_PassengrNo" ColumnName="t_PassengrNo" />
+                <ScalarProperty Name="t_Payment" ColumnName="t_Payment" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="S_No" ColumnName="S_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Ticket_Category">
+            <EntityTypeMapping TypeName="DB_RMSModel.tbl_Ticket_Category">
+              <MappingFragment StoreEntitySet="tbl_Ticket_Category">
+                <ScalarProperty Name="tc_id" ColumnName="tc_id" />
+                <ScalarProperty Name="tc_Gernal" ColumnName="tc_Gernal" />
+                <ScalarProperty Name="tc_Businsman" ColumnName="tc_Businsman" />
+                <ScalarProperty Name="tc_parliment" ColumnName="tc_parliment" />
+                <ScalarProperty Name="tc_Economy" ColumnName="tc_Economy" />
+                <ScalarProperty Name="t_ID" ColumnName="t_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Train">
+            <EntityTypeMapping TypeName="DB_RMSModel.tbl_Train">
+              <MappingFragment StoreEntitySet="tbl_Train">
+                <ScalarProperty Name="Train_No" ColumnName="Train_No" />
+                <ScalarProperty Name="T_Name" ColumnName="T_Name" />
+                <ScalarProperty Name="T_Desination" ColumnName="T_Desination" />
+                <ScalarProperty Name="T_DepartureTime" ColumnName="T_DepartureTime" />
+                <ScalarProperty Name="T_ArrivalTime" ColumnName="T_ArrivalTime" />
+                <ScalarProperty Name="T_seats_Available" ColumnName="T_seats_Available" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="DB_RMSModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="U_Fname" ColumnName="U_Fname" />
+                <ScalarProperty Name="U_Lname" ColumnName="U_Lname" />
+                <ScalarProperty Name="U_Mobile_No" ColumnName="U_Mobile_No" />
+                <ScalarProperty Name="U_Email" ColumnName="U_Email" />
+                <ScalarProperty Name="U_Age" ColumnName="U_Age" />
+                <ScalarProperty Name="U_Gender" ColumnName="U_Gender" />
+                <ScalarProperty Name="U_Password" ColumnName="U_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

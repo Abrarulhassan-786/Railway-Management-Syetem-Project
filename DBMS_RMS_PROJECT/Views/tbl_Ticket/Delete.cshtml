@@ -1,0 +1,81 @@
+﻿@model DBMS_RMS_PROJECT.Models.tbl_Ticket
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>tbl_Ticket</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.t_BookedUser)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.t_BookedUser)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.t_PassengrNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.t_PassengrNo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.t_Payment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.t_Payment)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Passenger.p_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Passenger.p_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Station.S_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Station.S_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_User.U_Fname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_User.U_Fname)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
